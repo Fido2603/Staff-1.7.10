@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dk.fido2603</groupId>
+	<artifactId>Staff-1.7.10</artifactId>
+	<version>0.0.1</version>
+
+	<organization>
+		<name>HeroGamersDK</name>
+		<url>http://youtube.com/HeroGamersDK</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://opensource.org/licenses/MIT</url>
+		</license>
+	</licenses>
+
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+	
+	<scm>
+		<connection>scm:git:git@github.com:Fido2603/Staff-1.7.10.git</connection>
+		<developerConnection>scm:git:git@github.com:Fido2603/Staff-1.7.10.git</developerConnection>
+		<url>https://github.com/Fido2603/Staff-1.7.10</url>
+	</scm>
+
+    <build>
+        <defaultGoal>clean package install</defaultGoal>
+        <finalName>Staff-1.7.10-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+		<dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>craftbukkit</artifactId>
+			<version>bukkit-1.7.10-R0.1-20140817.175650-8</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../lib/bukkit.jar</systemPath>
+		</dependency>
+	</dependencies>
+</project>

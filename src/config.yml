@@ -1,0 +1,13 @@
+
+# If you receive an error when you load this plugin
+# Make sure that:
+# There are no taps
+# Text with symbols is enclosed in single or double quotation marks
+
+# This sets you server name:
+ServerName: 'YourServerName'
+
+#Staff here
+staff:
+    - TheHanSolo (Owner)
+    - Alescia

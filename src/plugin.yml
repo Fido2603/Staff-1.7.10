@@ -1,0 +1,35 @@
+name: Staff-1.7.10
+main: dk.fido2603.staff.Staff
+version: 0.0.1
+description: A quick staff check thingy.
+softdepend: [GroupManager]
+commands:
+  staff:
+    usage: /<command>
+    description: The command for the Staff plugin.
+permissions:
+  staff.*:
+    description: Gives permission to all of the HardcoreQuest plugins commands.
+    default: false
+    children:
+      hq.add: true
+      hq.reload: true
+      hq.help: true
+      hq.info: true
+      hq.staff: true
+  hq.add:
+    description: Permission to add staff to list.
+    default: false
+  hq.reload:
+    description: Permission to reload the plugin.
+    default: false
+  hq.help:
+    description: Permission to use the help command.
+    default: true
+  hq.info:
+    description: Permission to use the info command.
+    default: true
+  hq.staff:
+    description: Permission to view the staff.
+    default: true
+
