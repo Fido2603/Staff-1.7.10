@@ -43,8 +43,6 @@ public class Commands
 		}
 					
 		// If the player is null, it means the command comes from the server console
-		if (player == null)
-		{
 			if (args.length == 1)
 			{
 				if(args[0].equalsIgnoreCase("reload"))
@@ -55,12 +53,7 @@ public class Commands
 					return true;
 				}
 			}
-
-			return true;
-		}
 		
-		if (player == null)
-		{
 			if (args.length == 1)
 			{
 				if(args[0].equalsIgnoreCase("help"))
@@ -71,12 +64,7 @@ public class Commands
 					return true;
 				}
 			}
-
-			return true;
-		}
 		
-		if (player == null)
-		{
 			if (args.length == 1)
 			{
 				if(args[0].equalsIgnoreCase("info"))
@@ -86,60 +74,16 @@ public class Commands
 
 					return true;
 				}
-			}
+			}			
 
-			return true;
-		}
-		
-		if (player == null)
-		{
-			if (args.length == 1)
-			{
-				if(args[0].equalsIgnoreCase("add"))
-				{
-					CommandAddMissing(sender);
-					plugin.log(sender.getName() + " /staff add");
-
-					return true;
-				}
-			}
-
-			return true;
-		}
-		
 		if (args.length == 1)
 		{
 			if(args[0].equalsIgnoreCase("add"))
 			{
-				CommandAddMissing(sender);
-				plugin.log(sender.getName() + " /staff add");
-
-				return true;
-			}
-		}
-		
-		if (args.length == 2)
-		{
-			if(args[0].equalsIgnoreCase("add"))
-			{
-				CommandAdd(sender, cmd, label, args);
-				plugin.log(sender.getName() + " /staff add <something>");
-
-				return true;
-			}
-		}
-		
-		if (player == null)
-		{
-			if (args.length == 2)
-			{
-				if(args[0].equalsIgnoreCase("add"))
-				{
-					CommandAdd(sender, cmd, label, args);
-					plugin.log(sender.getName() + " /staff add <something>");
+			CommandAdd(sender, cmd, label, args);
+			plugin.log(sender.getName() + " /staff add");
 	
-					return true;
-				}
+			return true; 
 			}
 		}
 
@@ -149,23 +93,9 @@ public class Commands
 			CommandStaff(player, sender, cmd, label, args);
 			plugin.log(sender.getName() + " /staff");
 			return true;	
-		}
+		}		
 		
-		// User has written /Staff <something> 
-		if (args.length == 1)
-		{
-			switch(args[0].toLowerCase())
-			{
-				case "info" : CommandInfo(player); break;
-			    case "help" : CommandHelp(player); break;
-				case "reload" : CommandReload(player); break;
-				default : player.sendMessage(ChatColor.RED + "Invalid Staff command");				
-			}
-			
-			return true;
-		}
-		
-		sender.sendMessage(ChatColor.RED + "Too many arguments!");
+		sender.sendMessage(ChatColor.RED + "Invalid Staff command!");
 		return true;		
 	}
 	
@@ -178,7 +108,7 @@ public class Commands
 		        // On command send the rules from config.yml to the sender of the command
 		        List<String> staffList = plugin.getConfig().getStringList("staff");
 		        for (String s : staffList){
-		            sender.sendMessage(s);
+		            sender.sendMessage(ChatColor.GOLD + s);
 		        }
 		        return;		        
 		    }
