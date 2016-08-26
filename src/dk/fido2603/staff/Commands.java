@@ -76,11 +76,22 @@ public class Commands
 				}
 			}			
 
-		if (args.length == 1)
+		if (args.length > 1)
 		{
 			if(args[0].equalsIgnoreCase("add"))
 			{
 			CommandAdd(sender, cmd, label, args);
+			plugin.log(sender.getName() + " /staff add");
+	
+			return true; 
+			}
+		}
+		
+		if (args.length == 1)
+		{
+			if(args[0].equalsIgnoreCase("add"))
+			{
+			CommandAddMissing(sender);
 			plugin.log(sender.getName() + " /staff add");
 	
 			return true; 
