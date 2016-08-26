@@ -12,24 +12,24 @@ permissions:
     description: Gives permission to all of the HardcoreQuest plugins commands.
     default: false
     children:
-      hq.add: true
-      hq.reload: true
-      hq.help: true
-      hq.info: true
-      hq.staff: true
-  hq.add:
+      staff.add: true
+      staff.reload: true
+      staff.help: true
+      staff.info: true
+      staff.staff: true
+  staff.add:
     description: Permission to add staff to list.
     default: false
-  hq.reload:
+  staff.reload:
     description: Permission to reload the plugin.
     default: false
-  hq.help:
+  staff.help:
     description: Permission to use the help command.
     default: true
-  hq.info:
+  staff.info:
     description: Permission to use the info command.
     default: true
-  hq.staff:
+  staff.staff:
     description: Permission to view the staff.
     default: true
 

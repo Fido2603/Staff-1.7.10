@@ -97,7 +97,7 @@ public class Commands
 			{
 				if(args[0].equalsIgnoreCase("add"))
 				{
-					CommandAdd(player);
+					CommandAddMissing(sender);
 					plugin.log(sender.getName() + " /staff add");
 
 					return true;
@@ -106,7 +106,42 @@ public class Commands
 
 			return true;
 		}
+		
+		if (args.length == 1)
+		{
+			if(args[0].equalsIgnoreCase("add"))
+			{
+				CommandAddMissing(sender);
+				plugin.log(sender.getName() + " /staff add");
 
+				return true;
+			}
+		}
+		
+		if (args.length == 2)
+		{
+			if(args[0].equalsIgnoreCase("add"))
+			{
+				CommandAdd(sender, cmd, label, args);
+				plugin.log(sender.getName() + " /staff add <something>");
+
+				return true;
+			}
+		}
+		
+		if (player == null)
+		{
+			if (args.length == 2)
+			{
+				if(args[0].equalsIgnoreCase("add"))
+				{
+					CommandAdd(sender, cmd, label, args);
+					plugin.log(sender.getName() + " /staff add <something>");
+	
+					return true;
+				}
+			}
+		}
 
 		// User has just written /Staff command and nothing else 
 		if (args.length == 0)
@@ -138,14 +173,14 @@ public class Commands
     public void CommandStaff(Player player, CommandSender sender, Command command, String label, String[] args) 
     {
     	{
-    		if (player.hasPermission("staff.help"))
+    		if (player.hasPermission("staff.staff"))
     		{
 		        // On command send the rules from config.yml to the sender of the command
-		        List<String> rules = plugin.getConfig().getStringList("staff");
-		        for (String s : rules){
+		        List<String> staffList = plugin.getConfig().getStringList("staff");
+		        for (String s : staffList){
 		            sender.sendMessage(s);
 		        }
-		        return;
+		        return;		        
 		    }
 		else
 		{
@@ -178,7 +213,7 @@ public class Commands
 		{
 			if (player == null)
 			{
-				this.plugin.log(ChatColor.WHITE + "/staff" + ChatColor.AQUA + " - Show basic info");
+				this.plugin.log(ChatColor.WHITE + "/staff" + ChatColor.AQUA + " - Shows staff!");
 			}
 			else
 			{
@@ -212,8 +247,9 @@ public class Commands
 	{
 		if (player.hasPermission("staff.reload"))
 		{
-			plugin.reloadSettings();
-			plugin.loadSettings();
+			plugin.getConfig();
+			plugin.saveConfig();
+			plugin.reloadConfig();
 			
 			if (player == null)
 			{
@@ -230,24 +266,67 @@ public class Commands
 		}
 	}
 	
-	public void CommandAdd(Player player)
-	{
-		if (player.hasPermission("staff.add"))
+    public boolean CommandAdd(CommandSender sender, Command cmd, String label, String [] args) 
+    {
+        if(sender instanceof Player) {
+        Player player = (Player)sender;
 		{
-			
-			if (player == null)
+			if (player.hasPermission("staff.add"))
 			{
 				
+				if (player == null)
+				{
+					this.plugin.log(this.plugin.getDescription().getFullName() + ": Please type the command from ingame..");
+				}
+				else
+				{		             
+							@SuppressWarnings("unchecked")
+							List<String> staffList = (List<String>)plugin.getConfig().getList("staff");
+							staffList.add(args[1]);
+							plugin.getConfig().set("staff", staffList);
+							player.sendMessage(ChatColor.YELLOW + this.plugin.getDescription().getFullName() + ": " + ChatColor.WHITE + "Saving the config...");
+	                        plugin.saveConfig();
+	        				player.sendMessage(ChatColor.RED + this.plugin.getDescription().getFullName() + ": " + ChatColor.WHITE + "Reloading the config, to make your new staff show up.");
+	                        plugin.reloadConfig();
+	                        player.sendMessage("Done");
+	                        return true;		            
+				}
+				}
+				else
+				{
+					player.sendMessage(ChatColor.RED + "You do not have permission for this command!");
+				}
 			}
-			else
+        }
+        return false;
+	}
+    
+    public boolean CommandAddMissing(CommandSender sender) 
+    {
+        if(sender instanceof Player) {
+        Player player = (Player)sender;
+		{
+			if (player.hasPermission("staff.add"))
 			{
 				
+				if (player == null)
+				{
+					this.plugin.log(this.plugin.getDescription().getFullName() + ": Please type the command from ingame..");
+				}
+				else
+				{		             
+							player.sendMessage(ChatColor.RED + "Missing arguments..");
+							player.sendMessage(ChatColor.RED + "Please use /staff add <user>");	
+	                        return true;		            
+				}
+				}
+				else
+				{
+					player.sendMessage(ChatColor.RED + "You do not have permission for this command!");
+				}
 			}
-		}
-		else
-		{
-			player.sendMessage(ChatColor.RED + "You do not have permission for this command!");
-		}
+        }
+        return false;
 	}
 
 	//Doesn't do shit
