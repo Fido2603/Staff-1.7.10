@@ -195,10 +195,12 @@ public class Commands
 			if (player == null)
 			{
 				this.plugin.log(this.plugin.getDescription().getFullName() + ": Reloaded configuration.");
+				this.plugin.log(this.plugin.getDescription().getFullName() + ": This will not take your config into action!");
 			}
 			else
 			{
 				player.sendMessage(ChatColor.YELLOW + this.plugin.getDescription().getFullName() + ": " + ChatColor.WHITE + "Reloaded configuration.");
+				player.sendMessage(ChatColor.YELLOW + this.plugin.getDescription().getFullName() + ": " + ChatColor.RED + "This will not take your config into action!");
 			}
 		}
 		else

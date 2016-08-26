@@ -66,7 +66,7 @@ public class Staff extends JavaPlugin
 		this.console = this.getServer().getConsoleSender();
 
 		//this sends the message "[Staff] Lets get going WO" when the server starts
-		consoles.sendMessage(ChatColor.DARK_AQUA + "[Staff] Started without failure!");
+		consoles.sendMessage(ChatColor.DARK_AQUA + "[" + getDescription().getFullName() + "] Started without failure!");
 
 		// This defines the variable pm to be getServer.getPluginManager(). it is not needed but if you have lots of classes its nice to just use pm instead of getServer.getPluginManager()
 		PluginManager pm = getServer().getPluginManager();
@@ -76,7 +76,14 @@ public class Staff extends JavaPlugin
 	public void onDisabled()
 	{
 		//this sends the message "[Staff] Oh no, don't leave me..."  when the server stops
-		consoles.sendMessage(ChatColor.BLUE + "[Staff] Oh no, don't leave me...");			
+		consoles.sendMessage(ChatColor.BLUE + "[" + getDescription().getFullName() + "] Oh no, don't leave me...");			
+	}
+	
+	public void onDisable()
+	{
+		//this sends the message "[Staff] Oh no, don't leave me..."  when the server stops
+		consoles.sendMessage(ChatColor.BLUE + "[" + getDescription().getFullName() + "] Oh no, don't leave me...");	
+        saveConfig();
 	}
 	
 	public void log(String message)
