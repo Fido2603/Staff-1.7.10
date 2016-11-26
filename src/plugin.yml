@@ -9,7 +9,7 @@ commands:
     description: The command for the Staff plugin.
 permissions:
   staff.*:
-    description: Gives permission to all of the HardcoreQuest plugins commands.
+    description: Gives permission to all of the Staff plugins commands.
     default: false
     children:
       staff.add: true
