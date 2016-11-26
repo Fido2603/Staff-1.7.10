@@ -9,9 +9,5 @@ ServerName: 'YourServerName'
 
 #Staff here
 staff:
-    - The_Han_Solo(Owner)
-    - Alescia(Co-Owner)
-    - LightningValley(Head-Admin)
-    - 20mathias20(Admin)
-    - Redy4580(Dev)
-    - Fido2603(Moderator)
+    - Example1
+    - Example2
